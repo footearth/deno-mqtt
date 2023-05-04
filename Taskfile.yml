@@ -1,0 +1,19 @@
+version: '3'
+
+tasks:
+
+  help: task --list-all
+  default:
+    - task: help
+
+  clean:
+    - rm -rf ./dist
+    - mkdir -p ./dist
+
+  build:
+    deps:
+      - clean
+    cmds:
+      - deno run -A ./index.js
+
+  test: deno run -A ./test/index.js
